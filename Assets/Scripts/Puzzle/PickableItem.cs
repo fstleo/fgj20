@@ -91,6 +91,7 @@ public class PickableItem : MonoBehaviour
         if (_moveToPosition != null)
         {
             _moveToPosition = position;
+            _onMovingEnd = null;
         }
         else
         {
@@ -102,6 +103,7 @@ public class PickableItem : MonoBehaviour
     {
         _moveToPosition = position;
         _movingStartTime = Time.time;
+        _onMovingEnd = null;
     }
 
     public void SetPositionAnimated(Vector3 position, Action<PickableItem> onAnimationEnd)
