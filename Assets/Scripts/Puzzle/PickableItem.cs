@@ -4,10 +4,14 @@ public class PickableItem : MonoBehaviour
 {
     private const float PICKING_TIME = 0.4f; // in seconds
 
+    [SerializeField]
+    private Material _ghostMaterial;
+
     private Color _defaultMaterialColor;
     private Vector3 _initialPosition;
     private Vector3? _moveToPosition;
     private float _movingStartTime;
+    private ItemGhost _ghost;
 
     private void Awake()
     {
@@ -35,11 +39,21 @@ public class PickableItem : MonoBehaviour
     public void OnPicked()
     {
         GetComponent<Renderer>().material.color = Color.red;
+        if (_ghost == null)
+        {
+            GameObject ghostGo = Instantiate(gameObject);
+            Destroy(ghostGo.GetComponent<PickableItem>());
+            _ghost = ghostGo.AddComponent<ItemGhost>();
+            _ghost.transform.SetParent(transform.parent);
+            _ghost.GetComponent<Renderer>().material = _ghostMaterial;
+        }
+        _ghost.gameObject.SetActive(true);
     }
 
     public void OnReleased()
     {
         GetComponent<Renderer>().material.color = _defaultMaterialColor;
+        _ghost.gameObject.SetActive(false);
     }
 
     public void SetPosition(Vector3 position)
