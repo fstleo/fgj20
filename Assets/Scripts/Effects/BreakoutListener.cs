@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BreakoutListener : MonoBehaviour
 {
@@ -13,6 +11,20 @@ public class BreakoutListener : MonoBehaviour
 
     private void ShowEffects()
     {
-        _shaker.Shake(0.5f);
+        _shaker.Shake(0.8f, 0.3f);
     }
+
+    private void Update()
+    {
+        if (Random.Range(0, 1f) < 0.001f)
+        {
+            RandomEffect();
+        }
+    }
+
+    private void RandomEffect()
+    {
+        _shaker.Shake(0.2f, 0.05f);
+    }
+    
 }

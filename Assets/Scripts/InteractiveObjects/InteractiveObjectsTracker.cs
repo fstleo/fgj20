@@ -50,8 +50,7 @@ public class InteractiveObjectsTracker : MonoBehaviour
                 _currentInteractive.StopInteraction();
             }
         }
-    }
-        
+    }       
 
     private void StopInteraction()
     {

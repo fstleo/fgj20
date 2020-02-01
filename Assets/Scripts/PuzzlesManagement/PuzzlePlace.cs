@@ -13,10 +13,7 @@ public class PuzzlePlace : MonoBehaviour//, IInteractive
     
     void Awake()
     {        
-        _indicator.SetActive(false);
-        
-//        puzzle.transform.localPosition += 2f * transform.forward / 3f;
-//        puzzle.GetComponent<PuzzleView>().OnFix += Fix;
+        _indicator.SetActive(false);      
     }
 
     public void InitWithPuzzle(GameObject puzzleObject)

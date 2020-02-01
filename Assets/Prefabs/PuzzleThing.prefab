@@ -148,7 +148,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2172858740303900781}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: 0.86, y: 0.13, z: -0.86}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 3354648830984261323}
@@ -166,7 +166,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 1
+  m_Intensity: 4
   m_Range: 4
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -251,13 +251,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7500050059520218369}
-  m_LocalRotation: {x: -0, y: -0.28511542, z: -0, w: 0.95849323}
-  m_LocalPosition: {x: 2.62, y: 1.514, z: -3.99}
+  m_LocalRotation: {x: 0.28410548, y: -0.2552157, z: 0.06486152, w: 0.921923}
+  m_LocalPosition: {x: 2.5310025, y: 1.9590002, z: -3.8370028}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7846707279241859891}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: -33.132, z: 0}
+  m_LocalEulerAnglesHint: {x: 33.845, y: -31.481, z: -1.7540001}
 --- !u!1 &7846707277961440361
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,7 +305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _puzzlePoint: {fileID: 868996430}
-  _indicator: {fileID: 8122541647557830011}
+  _indicator: {fileID: 2172858740303900781}
 --- !u!1 &7846707278888723352
 GameObject:
   m_ObjectHideFlags: 0
@@ -544,7 +544,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8122541647557830011}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.715, y: 2.384, z: -2.585}
+  m_LocalPosition: {x: 2.124, y: 2.067, z: -3.012}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 3597000268228476342}
