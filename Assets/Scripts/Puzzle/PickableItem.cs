@@ -16,7 +16,7 @@ public class PickableItem : MonoBehaviour
     private Transform[] _sectionPoints;
 
     [SerializeField]
-    private Renderer _renderer;
+    private Renderer[] _renderers;
 
     [SerializeField]
     private Material _ghostMaterial;
@@ -74,7 +74,10 @@ public class PickableItem : MonoBehaviour
             ghostTransform.SetParent(transform.parent);
             ghostTransform.position = transform.position;
             ghostTransform.localScale = transform.localScale * 0.95f;
-            ghostPickableItem._renderer.material = _ghostMaterial;
+            foreach (Renderer renderer in ghostPickableItem._renderers)
+            {
+                renderer.material = _ghostMaterial;
+            }
             _ghost.gameObject.layer = LayerMask.NameToLayer("PickableItemGhost");
         }
 
