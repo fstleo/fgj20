@@ -17,6 +17,8 @@ public class PanelOpener : MonoBehaviour, IInteractive
     
     private Animator _animator;
 
+    private ItemPicker _itemPicker;
+
     private void Awake()
     {
         _cameraTform = Camera.main.transform;
@@ -27,12 +29,16 @@ public class PanelOpener : MonoBehaviour, IInteractive
     {
         _animator.SetBool("Opened", true);
         StartCoroutine(PutCameraBefore());
+        _itemPicker = gameObject.AddComponent<ItemPicker>();
+        _cameraTform.GetComponent<CameraShakes>().Fixed = true;
     }
 
     public void StopInteraction()
     {
         _animator.SetBool("Opened", false);
         OnStopInteraction?.Invoke();
+        _cameraTform.GetComponent<CameraShakes>().Fixed = false;
+        Destroy(_itemPicker);
     }
 
     public event Action OnStopInteraction;

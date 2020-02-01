@@ -15,6 +15,8 @@ public class CameraShakes : MonoBehaviour
     
     [SerializeField]
     private float _decreaseFactor = 1.0f;
+    
+    public bool Fixed { get; set; }
         	
     private Vector3 _originalPos;
     
@@ -37,7 +39,11 @@ public class CameraShakes : MonoBehaviour
     
     private void LateUpdate()
     {
-        _originalPos = _transform.localPosition;
+        if (!Fixed)
+        {
+            _originalPos = _transform.localPosition;
+        }
+
         if (_shakeDuration > 0)
         {
             _transform.localPosition = _originalPos + Random.insideUnitSphere * _shakeAmount;
