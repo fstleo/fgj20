@@ -28,6 +28,7 @@ public class PickableItem : MonoBehaviour
     }
 
     public Transform[] sectionPoints => _sectionPoints;
+    public int size => _sectionPoints.Length;
 
     private Vector3? _moveToPosition;
     private float _movingStartTime;
