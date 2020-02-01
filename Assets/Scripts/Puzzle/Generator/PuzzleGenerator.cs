@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using Random = UnityEngine.Random;
 
 public class PuzzleGenerator : MonoBehaviour
@@ -62,7 +61,6 @@ public class PuzzleGenerator : MonoBehaviour
         GameObject dragPlane = Instantiate(_itemDragPlane);
         dragPlane.transform.parent = puzzleObject.transform;
         dragPlane.transform.position = topLayer.transform.position + Vector3.up * GRID_STEP;
-        Debug.Log(dragPlane.transform.position);
         puzzle.itemDragPlane = dragPlane;
         return puzzle;
     }

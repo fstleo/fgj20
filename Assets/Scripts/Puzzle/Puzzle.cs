@@ -5,7 +5,9 @@ using Random = UnityEngine.Random;
 public class Puzzle : MonoBehaviour
 {
     private GameObject _itemDragPlane;
+    private PickableItem[] _pickableItems;
     private Action _onWin;
+    private bool _isRunning;
 
     public GameObject itemDragPlane
     {
@@ -16,8 +18,8 @@ public class Puzzle : MonoBehaviour
     public void StartPuzzle(Action onWin)
     {
         _onWin = onWin;
-        PickableItem[] pickableItems = transform.GetComponentsInChildren<PickableItem>();
-        PickableItem brokenElement = pickableItems[Random.Range(0, pickableItems.Length)];
+        _pickableItems = transform.GetComponentsInChildren<PickableItem>();
+        PickableItem brokenElement = _pickableItems[Random.Range(0, _pickableItems.Length)];
         brokenElement.OnPicked();
         brokenElement.transform.position = new Vector3
         (
@@ -27,5 +29,37 @@ public class Puzzle : MonoBehaviour
         );
         brokenElement.initialPositionState = PickableItem.InitialPositionState.CanBeReturnedToInitialPosition;
         brokenElement.OnReleased();
+        _isRunning = true;
+    }
+
+    private void Update()
+    {
+        if (!_isRunning)
+        {
+            return;
+        }
+
+        if (AreAllOnInitialPosition())
+        {
+            _isRunning = false;
+            if (_onWin != null)
+            {
+                _onWin();
+                _onWin = null;
+            }
+        }
+    }
+
+    private bool AreAllOnInitialPosition()
+    {
+        foreach (PickableItem pickableItem in _pickableItems)
+        {
+            if (pickableItem.initialPositionState != PickableItem.InitialPositionState.OnInitialPosition)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
