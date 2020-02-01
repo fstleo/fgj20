@@ -24,11 +24,11 @@ public class Puzzle : MonoBehaviour
         {
             PickableItem brokenElement = _pickableItems[Random.Range(0, _pickableItems.Length)];
             brokenElement.OnPicked();
-            brokenElement.transform.position = new Vector3
+            brokenElement.transform.localPosition = new Vector3
             (
-                Random.Range(-3f, 3f),
-                itemDragPlane.transform.position.y,
-                Random.Range(-2f, 2f)
+                Random.Range(-1f, 1f),
+                itemDragPlane.transform.localPosition.y,
+                Random.Range(-1f, 1f)
             );
             brokenElement.initialPositionState = PickableItem.InitialPositionState.CanBeReturnedToInitialPosition;
             brokenElement.OnReleased();
