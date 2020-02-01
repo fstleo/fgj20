@@ -106,7 +106,7 @@ public class ItemPicker : MonoBehaviour
     {
         foreach (Transform point in item.sectionPoints)
         {
-            Ray ray = new Ray(point.position, Vector3.up);
+            Ray ray = new Ray(point.position, item.transform.up);
             if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, LayerMask.GetMask("PickableItem")))
             {
                 PickableItem coveringItem = hit.transform.GetComponent<PickableItem>();
