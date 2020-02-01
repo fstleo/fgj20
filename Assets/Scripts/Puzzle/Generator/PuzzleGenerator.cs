@@ -13,36 +13,44 @@ public class PuzzleGenerator : MonoBehaviour
 
     private void Start()
     {
-        int width = 4;
-        int height = 4;
+        int width = 3;
+        int height = 3;
+        int layers = 3;
         float gridStep = 1;
-        var puzzleCellDescs = GenerateLayer(width, height);
-        GameObject puzzle = new GameObject("Puzzle");
-        GameObject layer1 = new GameObject("Layer1");
-        layer1.transform.parent = puzzle.transform;
-        for (int j = 0; j < height; ++j)
-        {
-            for (int i = 0; i < width; ++i)
-            {
-                PuzzleCellDesc desc = puzzleCellDescs[i, j];
-                if (desc.item == null)
-                {
-                    continue;
-                }
 
-                PickableItem item = Instantiate(desc.item);
-                item.transform.parent = layer1.transform;
-                item.transform.position = new Vector3((i - width / 2f) * gridStep, 0f, j * gridStep);
-                if (desc.isVertical)
+        GameObject puzzle = new GameObject("Puzzle");
+        GameObject topLayer = null;
+        for (int layerIndex = 0; layerIndex < layers; ++layerIndex)
+        {
+            var puzzleCellDescs = GenerateLayer(width, height);
+            GameObject layer = new GameObject("Layer" + layerIndex);
+            topLayer = layer;
+            layer.transform.parent = puzzle.transform;
+            layer.transform.position = layerIndex * gridStep * Vector3.up;
+            for (int j = 0; j < height; ++j)
+            {
+                for (int i = 0; i < width; ++i)
                 {
-                    item.transform.eulerAngles = new Vector3(0f, -90f, 0f);
+                    PuzzleCellDesc desc = puzzleCellDescs[i, j];
+                    if (desc.item == null)
+                    {
+                        continue;
+                    }
+
+                    PickableItem item = Instantiate(desc.item);
+                    item.transform.parent = layer.transform;
+                    item.transform.localPosition = new Vector3((i - width / 2f) * gridStep, 0f, j * gridStep);
+                    if (desc.isVertical)
+                    {
+                        item.transform.eulerAngles = new Vector3(0f, -90f, 0f);
+                    }
                 }
             }
         }
 
         GameObject dragPlane = Instantiate(_itemDragPlane);
         dragPlane.transform.parent = puzzle.transform;
-        dragPlane.transform.position = layer1.transform.position + Vector3.up * gridStep;
+        dragPlane.transform.position = topLayer.transform.position + Vector3.up * gridStep;
     }
 
     public PuzzleCellDesc[,] GenerateLayer(int width, int height)
@@ -58,7 +66,7 @@ public class PuzzleGenerator : MonoBehaviour
                 }
 
                 bool isVertical = Random.Range(0, 2) == 0;
-                
+
                 int maxSize = 0;
                 while (true)
                 {
@@ -70,7 +78,7 @@ public class PuzzleGenerator : MonoBehaviour
                         break;
                     }
                 }
-                
+
                 PickableItem[] availableItems = _itemsPool.Where(pi => pi.size <= maxSize).ToArray();
                 PickableItem item = availableItems[Random.Range(0, availableItems.Length)];
                 result[i, j] = new PuzzleCellDesc
