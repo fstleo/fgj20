@@ -25,7 +25,6 @@ public class PickableItem : MonoBehaviour
     }
 
     private Color _defaultMaterialColor;
-    private Vector3 _initialPosition;
     private Vector3? _moveToPosition;
     private float _movingStartTime;
     private Action<PickableItem> _onMovingEnd;
@@ -35,7 +34,6 @@ public class PickableItem : MonoBehaviour
     private void Awake()
     {
         _defaultMaterialColor = GetComponent<Renderer>().material.color;
-        _initialPosition = transform.position;
         _initialPositionState = InitialPositionState.OnInitialPosition;
     }
 
