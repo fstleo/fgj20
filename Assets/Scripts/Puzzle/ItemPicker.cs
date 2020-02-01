@@ -23,6 +23,7 @@ public class ItemPicker : MonoBehaviour
                     _pickedItem = pickedItem;
                     if (_pickedItem != null)
                     {
+                        SoundPlayer.Play("tink", 0.5f);
                         _pickedItem.OnPicked();
                         _pickedItem.SetPositionAnimated(GetPosOnPickedPlane(_pickedItem));
                         if (_pickedItem.initialPositionState == PickableItem.InitialPositionState.OnInitialPosition
@@ -37,6 +38,7 @@ public class ItemPicker : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0) && _pickedItem != null)
         {
+            SoundPlayer.Play("tink", 0.5f);
             _pickedItem.OnReleased();
             _pickedItem = null;
         }

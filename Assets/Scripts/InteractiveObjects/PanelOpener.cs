@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PanelOpener : MonoBehaviour, IInteractive
 {
+    public bool CanInteract { get; set; }
     public string Annotation => "Open";
        
     private Transform _cameraTform;

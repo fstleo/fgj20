@@ -30,7 +30,7 @@ public class InteractiveObjectsTracker : MonoBehaviour
             for (int i = 0; i < Physics.RaycastNonAlloc(_transform.position, _transform.forward, _raycastHits, 2); i++)
             {
                 var interactive = _raycastHits[i].transform.GetComponent<IInteractive>();
-                if (interactive != null)
+                if (interactive != null && interactive.CanInteract)
                 {
                     _annotationLabel.text = interactive.Annotation + " (E)";
                     if (Input.GetKeyDown(KeyCode.E))

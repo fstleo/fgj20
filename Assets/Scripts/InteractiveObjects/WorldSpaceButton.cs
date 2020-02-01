@@ -9,6 +9,7 @@ public class WorldSpaceButton : MonoBehaviour, IInteractive
     [SerializeField]
     private string _annotation;
 
+    public bool CanInteract { get; set; }
     public string Annotation => _annotation;
 
     private Animator _animator;

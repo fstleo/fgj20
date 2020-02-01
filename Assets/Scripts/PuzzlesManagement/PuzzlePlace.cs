@@ -3,13 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PuzzlePlace : MonoBehaviour//, IInteractive
+public class PuzzlePlace : MonoBehaviour
 {
     public event Action OnFix;
 
     [SerializeField] private Transform _puzzlePoint;
 
     [SerializeField] private GameObject _indicator;
+
+    [SerializeField]
+    private PanelOpener _interactive;
     
     void Awake()
     {        
@@ -33,10 +36,12 @@ public class PuzzlePlace : MonoBehaviour//, IInteractive
         _puzzlePoint.GetComponentInChildren<Puzzle>().StartPuzzle(Fix);
         _indicator.SetActive(true);
         _puzzlePoint.gameObject.SetActive(true);
+        _interactive.CanInteract = true;
     }
 
-    public void Fix()
+    private void Fix()
     {
+        _interactive.CanInteract = false;
         _puzzlePoint.gameObject.SetActive(false);
         _indicator.SetActive(false);
         OnFix?.Invoke();
