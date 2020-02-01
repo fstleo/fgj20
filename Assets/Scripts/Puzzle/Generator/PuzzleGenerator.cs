@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using Random = UnityEngine.Random;
 
 public class PuzzleGenerator : MonoBehaviour
@@ -20,20 +21,22 @@ public class PuzzleGenerator : MonoBehaviour
     {
         if (_debugMode)
         {
-            GeneratePuzzle(3, 3, 3);
+            Puzzle puzzle = GeneratePuzzle(3, 3, 3);
+            puzzle.StartPuzzle(() => Debug.Log("Win!!!"));
         }
     }
 
-    public GameObject GeneratePuzzle(int width, int height, int layers)
+    public Puzzle GeneratePuzzle(int width, int height, int layers)
     {
-        GameObject puzzle = new GameObject("Puzzle");
+        GameObject puzzleObject = new GameObject("Puzzle");
+        Puzzle puzzle = puzzleObject.AddComponent<Puzzle>();
         GameObject topLayer = null;
         for (int layerIndex = 0; layerIndex < layers; ++layerIndex)
         {
             var puzzleCellDescs = GenerateLayer(width, height);
             GameObject layer = new GameObject("Layer" + layerIndex);
             topLayer = layer;
-            layer.transform.parent = puzzle.transform;
+            layer.transform.parent = puzzleObject.transform;
             layer.transform.position = layerIndex * GRID_STEP * Vector3.up;
             for (int j = 0; j < height; ++j)
             {
@@ -57,8 +60,10 @@ public class PuzzleGenerator : MonoBehaviour
         }
 
         GameObject dragPlane = Instantiate(_itemDragPlane);
-        dragPlane.transform.parent = puzzle.transform;
+        dragPlane.transform.parent = puzzleObject.transform;
         dragPlane.transform.position = topLayer.transform.position + Vector3.up * GRID_STEP;
+        Debug.Log(dragPlane.transform.position);
+        puzzle.itemDragPlane = dragPlane;
         return puzzle;
     }
 
