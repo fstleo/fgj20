@@ -50,8 +50,8 @@ public class PickableItem : MonoBehaviour
     private void Awake()
     {
         _initialPositionState = InitialPositionState.OnInitialPosition;
-        _floatingFrequencyCoeff = Random.Range(2f, 8f);
-        _floatingMagnitudeCoeff = Random.Range(0.2f, 1f);
+        _floatingFrequencyCoeff = Random.Range(4f, 8f);
+        _floatingMagnitudeCoeff = Random.Range(0.2f, 0.5f);
     }
 
     private void Update()
