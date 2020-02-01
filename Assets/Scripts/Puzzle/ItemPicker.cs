@@ -25,7 +25,8 @@ public class ItemPicker : MonoBehaviour
                     {
                         _pickedItem.OnPicked();
                         _pickedItem.SetPositionAnimated(GetPosOnPickedPlane(_pickedItem));
-                        if (_pickedItem.initialPositionState == PickableItem.InitialPositionState.OnInitialPosition)
+                        if (_pickedItem.initialPositionState == PickableItem.InitialPositionState.OnInitialPosition
+                            || _pickedItem.initialPositionState == PickableItem.InitialPositionState.MovingToInitialPosition)
                         {
                             _pickedItem.initialPositionState = PickableItem.InitialPositionState.PickedFromInitialPosition;
                         }
@@ -43,40 +44,28 @@ public class ItemPicker : MonoBehaviour
         if (_pickedItem != null && (!Mathf.Approximately(Input.GetAxis("Mouse X"), 0f) || !Mathf.Approximately(Input.GetAxis("Mouse Y"), 0f)))
         {
             Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
+            bool interactedWithGhost = false;
             if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, LayerMask.GetMask("PickableItemGhost")))
             {
                 PickableItemGhost ghost = hit.transform.parent.GetComponent<PickableItemGhost>();
-                if (CheckCoveringItems(ghost.transform.GetComponent<PickableItem>()))
-                {
-                    if (_pickedItem.initialPositionState == PickableItem.InitialPositionState.PickedFromInitialPosition)
-                    {
-                        _pickedItem.SetPositionAnimated(GetPosOnPickedPlane(_pickedItem));
-                        _pickedItem.initialPositionState = PickableItem.InitialPositionState.CanBeReturnedToInitialPosition;
-                    }
-                    else
-                    {
-                        _pickedItem.SetPosition(GetPosOnPickedPlane(_pickedItem));
-                    }
-                }
-                else
+                if (!CheckCoveringItems(ghost.transform.GetComponent<PickableItem>()))
                 {
                     if (_pickedItem.initialPositionState == PickableItem.InitialPositionState.CanBeReturnedToInitialPosition)
                     {
                         _pickedItem.SetPositionAnimated(ghost.transform.position,
                             pickedItem => pickedItem.initialPositionState = PickableItem.InitialPositionState.OnInitialPosition);
-                    }
-                    else if (_pickedItem.initialPositionState == PickableItem.InitialPositionState.OnInitialPosition)
-                    {
-                        _pickedItem.SetPositionAnimated(GetPosOnPickedPlane(_pickedItem));
-                        _pickedItem.initialPositionState = PickableItem.InitialPositionState.PickedFromInitialPosition;
+                        _pickedItem.initialPositionState = PickableItem.InitialPositionState.MovingToInitialPosition;
                     }
                     else if (_pickedItem.initialPositionState == PickableItem.InitialPositionState.PickedFromInitialPosition)
                     {
                         _pickedItem.SetPosition(GetPosOnPickedPlane(_pickedItem));
                     }
+
+                    interactedWithGhost = true;
                 }
             }
-            else
+
+            if (!interactedWithGhost)
             {
                 if (_pickedItem.initialPositionState == PickableItem.InitialPositionState.PickedFromInitialPosition)
                 {
@@ -86,6 +75,11 @@ public class ItemPicker : MonoBehaviour
                 else
                 {
                     _pickedItem.SetPosition(GetPosOnPickedPlane(_pickedItem));
+                    if (_pickedItem.initialPositionState == PickableItem.InitialPositionState.OnInitialPosition
+                        || _pickedItem.initialPositionState == PickableItem.InitialPositionState.MovingToInitialPosition)
+                    {
+                        _pickedItem.initialPositionState = PickableItem.InitialPositionState.CanBeReturnedToInitialPosition;
+                    }
                 }
             }
         }

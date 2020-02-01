@@ -11,6 +11,7 @@ public class PickableItem : MonoBehaviour
         OnInitialPosition,
         PickedFromInitialPosition,
         CanBeReturnedToInitialPosition,
+        MovingToInitialPosition,
     }
 
     [SerializeField]
