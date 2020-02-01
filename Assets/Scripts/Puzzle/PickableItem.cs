@@ -46,7 +46,7 @@ public class PickableItem : MonoBehaviour
             _ghost = ghostGo.AddComponent<ItemGhost>();
             _ghost.transform.SetParent(transform.parent);
             _ghost.GetComponent<Renderer>().material = _ghostMaterial;
-            _ghost.gameObject.layer = LayerMask.NameToLayer("Default");
+            _ghost.gameObject.layer = LayerMask.NameToLayer("PickableItemGhost");
         }
         _ghost.gameObject.SetActive(true);
     }
