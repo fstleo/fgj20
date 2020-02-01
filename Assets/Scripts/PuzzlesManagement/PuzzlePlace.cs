@@ -45,6 +45,6 @@ public class PuzzlePlace : MonoBehaviour
         _puzzlePoint.gameObject.SetActive(false);
         _indicator.SetActive(false);
         OnFix?.Invoke();
-        GetComponentInChildren<IInteractive>().StopInteraction();        
+        _interactive.StopInteraction();        
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameTimer : MonoBehaviour
 {
@@ -12,13 +13,13 @@ public class GameTimer : MonoBehaviour
     
     private void Awake()
     {
-        GetComponent<PuzzleRandomizer>().OnPuzzleFix += ResetTimer;
+        GetComponent<PuzzleRandomizer>().OnPuzzleFix += IncreaseTimer;
         _timerLabel.text = _timer.ToString("F0");
     }
 
-    private void ResetTimer()
+    private void IncreaseTimer()
     {        
-        _timer = 60f;
+        _timer += 15f;
     }
 
     private void Update()
@@ -27,6 +28,7 @@ public class GameTimer : MonoBehaviour
         _timerLabel.text = _timer.ToString("F0");
         if (_timer < 0)
         {
+            SceneManager.LoadScene("FPSTest");
             //gameover
         }
     }
