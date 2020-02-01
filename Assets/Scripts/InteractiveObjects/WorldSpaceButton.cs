@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,6 +20,14 @@ public class WorldSpaceButton : MonoBehaviour, IInteractive
     
     public void Interact()
     {
-        _animator.SetInteger("Pressed", 1);    
-    }           
+        _animator.SetTrigger("Pressed");
+        StopInteraction();
+    }
+
+    public void StopInteraction()
+    {
+        OnStopInteraction?.Invoke();
+    }
+
+    public event Action OnStopInteraction;
 }
