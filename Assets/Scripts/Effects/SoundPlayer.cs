@@ -31,7 +31,7 @@ public class SoundPlayer
     }
 
     private void PlaySound(string name, float volume = 1)
-    {
+    {        
         _sources[currentChannel].clip = _sounds[GetRandomSound(name)];
         _sources[currentChannel].pitch = 1 + Random.Range(-0.3f, 0.3f);
         _sources[currentChannel].volume = volume;
