@@ -32,6 +32,12 @@ public class PickableItem : MonoBehaviour
         set => _initialPositionState = value;
     }
 
+    public bool isBroken
+    {
+        get => _isBroken;
+        set => _isBroken = value;
+    }
+
     public Transform[] sectionPoints => _sectionPoints;
     public int size => _sectionPoints.Length;
     public Collider collider => _collider;
@@ -46,6 +52,7 @@ public class PickableItem : MonoBehaviour
     private float _floatingStartTime;
     private float _floatingFrequencyCoeff;
     private float _floatingMagnitudeCoeff;
+    private bool _isBroken;
 
     private void Awake()
     {
@@ -106,6 +113,10 @@ public class PickableItem : MonoBehaviour
         }
 
         _ghost.gameObject.SetActive(true);
+        foreach (Renderer renderer in _ghost.GetComponent<PickableItem>()._renderers)
+        {
+            renderer.material.color = _isBroken ? new Color(1f, 0f, 0f, 0.5f) : new Color(1f, 1f, 1f, 0.5f);
+        }
     }
 
     public void OnReleased()

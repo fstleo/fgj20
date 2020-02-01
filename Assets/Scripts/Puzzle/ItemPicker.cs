@@ -54,8 +54,11 @@ public class ItemPicker : MonoBehaviour
                 {
                     if (_pickedItem.initialPositionState == PickableItem.InitialPositionState.CanBeReturnedToInitialPosition)
                     {
-                        _pickedItem.SetPositionAnimated(ghost.transform.position,
-                            pickedItem => pickedItem.initialPositionState = PickableItem.InitialPositionState.OnInitialPosition);
+                        _pickedItem.SetPositionAnimated(ghost.transform.position, pickedItem =>
+                        {
+                            pickedItem.initialPositionState = PickableItem.InitialPositionState.OnInitialPosition;
+                            pickedItem.isBroken = false;
+                        });
                         _pickedItem.initialPositionState = PickableItem.InitialPositionState.MovingToInitialPosition;
                     }
                     else if (_pickedItem.initialPositionState == PickableItem.InitialPositionState.PickedFromInitialPosition)
