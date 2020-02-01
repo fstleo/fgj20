@@ -11,7 +11,7 @@ public class PickableItem : MonoBehaviour
     private Vector3 _initialPosition;
     private Vector3? _moveToPosition;
     private float _movingStartTime;
-    private ItemGhost _ghost;
+    private PickableItemGhost _ghost;
 
     private void Awake()
     {
@@ -43,7 +43,7 @@ public class PickableItem : MonoBehaviour
         {
             GameObject ghostGo = Instantiate(gameObject);
             Destroy(ghostGo.GetComponent<PickableItem>());
-            _ghost = ghostGo.AddComponent<ItemGhost>();
+            _ghost = ghostGo.AddComponent<PickableItemGhost>();
             _ghost.transform.SetParent(transform.parent);
             _ghost.GetComponent<Renderer>().material = _ghostMaterial;
             _ghost.gameObject.layer = LayerMask.NameToLayer("PickableItemGhost");

@@ -34,7 +34,16 @@ public class ItemPicker : MonoBehaviour
 
         if (_pickedItem != null && (!Mathf.Approximately(Input.GetAxis("Mouse X"), 0f) || !Mathf.Approximately(Input.GetAxis("Mouse Y"), 0f)))
         {
-            _pickedItem.SetPosition(GetPosOnPickedPlane());
+            Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, LayerMask.GetMask("PickableItemGhost")))
+            {
+                PickableItemGhost ghost = hit.transform.GetComponent<PickableItemGhost>();
+                _pickedItem.SetPositionAnimated(ghost.transform.position);
+            }
+            else
+            {
+                _pickedItem.SetPosition(GetPosOnPickedPlane());                
+            }
         }
     }
 
