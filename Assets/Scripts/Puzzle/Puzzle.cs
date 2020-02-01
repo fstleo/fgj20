@@ -19,16 +19,21 @@ public class Puzzle : MonoBehaviour
     {
         _onWin = onWin;
         _pickableItems = transform.GetComponentsInChildren<PickableItem>();
-        PickableItem brokenElement = _pickableItems[Random.Range(0, _pickableItems.Length)];
-        brokenElement.OnPicked();
-        brokenElement.transform.position = new Vector3
-        (
-            Random.Range(-3f, 3f),
-            itemDragPlane.transform.position.y,
-            Random.Range(-2f, 2f)
-        );
-        brokenElement.initialPositionState = PickableItem.InitialPositionState.CanBeReturnedToInitialPosition;
-        brokenElement.OnReleased();
+        int brokenItemsCount = Random.Range(0, 5);
+        for (int i = 0; i < brokenItemsCount; ++i)
+        {
+            PickableItem brokenElement = _pickableItems[Random.Range(0, _pickableItems.Length)];
+            brokenElement.OnPicked();
+            brokenElement.transform.position = new Vector3
+            (
+                Random.Range(-3f, 3f),
+                itemDragPlane.transform.position.y,
+                Random.Range(-2f, 2f)
+            );
+            brokenElement.initialPositionState = PickableItem.InitialPositionState.CanBeReturnedToInitialPosition;
+            brokenElement.OnReleased();
+        }
+
         _isRunning = true;
     }
 
