@@ -10,7 +10,7 @@ public class PanelOpener : MonoBehaviour, IInteractive
     private Transform _cameraTform;
 
     [SerializeField]
-    private Vector3 _cameraOffset;
+    private Transform _cameraPlace;
     
     [SerializeField] 
     private float _cameraAnimationTime = 0.5f;
@@ -43,7 +43,7 @@ public class PanelOpener : MonoBehaviour, IInteractive
         float timer = _cameraAnimationTime;
         while (timer > 0)
         {
-            _cameraTform.position = Vector3.Lerp(cameraStartPos, transform.position + transform.rotation * _cameraOffset,
+            _cameraTform.position = Vector3.Lerp(cameraStartPos, _cameraPlace.position,
                 1 - timer / _cameraAnimationTime);
             _cameraTform.LookAt(transform);
             timer -= Time.deltaTime;
