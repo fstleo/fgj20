@@ -18,11 +18,7 @@ public class PickableItem : MonoBehaviour
     public InitialPositionState initialPositionState
     {
         get => _initialPositionState;
-        set
-        {
-            _initialPositionState = value;
-            Debug.Log(_initialPositionState);
-        }
+        set => _initialPositionState = value;
     }
 
     private Color _defaultMaterialColor;
