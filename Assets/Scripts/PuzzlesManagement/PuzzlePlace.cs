@@ -6,9 +6,6 @@ using UnityEngine;
 public class PuzzlePlace : MonoBehaviour//, IInteractive
 {
     public event Action OnFix;
-    
-    [SerializeField]
-    private GameObject _puzzlePrefab;
 
     [SerializeField] private Transform _puzzlePoint;
 
@@ -17,14 +14,20 @@ public class PuzzlePlace : MonoBehaviour//, IInteractive
     void Awake()
     {        
         _indicator.SetActive(false);
-        var puzzle = Instantiate(_puzzlePrefab, _puzzlePoint);
-        puzzle.transform.localRotation = Quaternion.identity;        
-        puzzle.transform.Rotate(90, 0, 0);
-        puzzle.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
         
-        _puzzlePoint.gameObject.SetActive(false);
 //        puzzle.transform.localPosition += 2f * transform.forward / 3f;
 //        puzzle.GetComponent<PuzzleView>().OnFix += Fix;
+    }
+
+    public void InitWithPuzzle(GameObject puzzleObject)
+    {
+        puzzleObject.transform.SetParent(_puzzlePoint);
+        puzzleObject.transform.localPosition = Vector3.zero;        
+        puzzleObject.transform.localRotation = Quaternion.identity;        
+        puzzleObject.transform.Rotate(90, 0, 0);
+        puzzleObject.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+        
+        _puzzlePoint.gameObject.SetActive(false);
     }
 
     public void Break()
