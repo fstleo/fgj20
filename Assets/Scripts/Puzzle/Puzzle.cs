@@ -32,6 +32,7 @@ public class Puzzle : MonoBehaviour
             );
             brokenElement.initialPositionState = PickableItem.InitialPositionState.CanBeReturnedToInitialPosition;
             brokenElement.OnReleased();
+            brokenElement.isBroken = true;
         }
 
         _isRunning = true;
@@ -47,6 +48,7 @@ public class Puzzle : MonoBehaviour
         if (AreAllOnInitialPosition())
         {
             _isRunning = false;
+
             if (_onWin != null)
             {
                 _onWin();
