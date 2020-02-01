@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 868996429}
   m_LocalRotation: {x: 0, y: 0.9659258, z: 0, w: 0.2588191}
-  m_LocalPosition: {x: 2, y: 1.6, z: -2.562}
+  m_LocalPosition: {x: 1.65, y: 1.6, z: -2.562}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7846707279241859891}
@@ -304,8 +304,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8d9a195bf49ec1468963c58b22c70d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _puzzlePrefab: {fileID: 3727592697979805440, guid: 73ec37702e140364b882305188e05a04,
-    type: 3}
   _puzzlePoint: {fileID: 868996430}
   _indicator: {fileID: 8122541647557830011}
 --- !u!1 &7846707278888723352
@@ -366,7 +364,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 6740968655363167591, guid: 5e442376a1ad7d843a2eed121eaa97c8, type: 3}
+  - {fileID: 2100000, guid: 86fef741de5a40c4bb0bff3ce53d376e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -451,7 +449,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -2786699496304759723, guid: 5e442376a1ad7d843a2eed121eaa97c8, type: 3}
+  - {fileID: 2100000, guid: 86fef741de5a40c4bb0bff3ce53d376e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
