@@ -1,22 +1,43 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class PickableItem : MonoBehaviour
 {
     private const float PICKING_TIME = 0.4f; // in seconds
 
+    public enum InitialPositionState
+    {
+        OnInitialPosition,
+        PickedFromInitialPosition,
+        CanBeReturnedToInitialPosition,
+    }
+
     [SerializeField]
     private Material _ghostMaterial;
+
+    public InitialPositionState initialPositionState
+    {
+        get => _initialPositionState;
+        set
+        {
+            _initialPositionState = value;
+            Debug.Log(_initialPositionState);
+        }
+    }
 
     private Color _defaultMaterialColor;
     private Vector3 _initialPosition;
     private Vector3? _moveToPosition;
     private float _movingStartTime;
+    private Action<PickableItem> _onMovingEnd;
     private PickableItemGhost _ghost;
+    private InitialPositionState _initialPositionState;
 
     private void Awake()
     {
         _defaultMaterialColor = GetComponent<Renderer>().material.color;
         _initialPosition = transform.localPosition;
+        _initialPositionState = InitialPositionState.OnInitialPosition;
     }
 
     private void Update()
@@ -28,6 +49,11 @@ public class PickableItem : MonoBehaviour
             {
                 transform.position = _moveToPosition.Value;
                 _moveToPosition = null;
+                if (_onMovingEnd != null)
+                {
+                    _onMovingEnd.Invoke(this);
+                    _onMovingEnd = null;
+                }
             }
             else
             {
@@ -50,6 +76,7 @@ public class PickableItem : MonoBehaviour
             _ghost.GetComponent<Renderer>().material = _ghostMaterial;
             _ghost.gameObject.layer = LayerMask.NameToLayer("PickableItemGhost");
         }
+
         _ghost.gameObject.SetActive(true);
     }
 
@@ -75,5 +102,11 @@ public class PickableItem : MonoBehaviour
     {
         _moveToPosition = position;
         _movingStartTime = Time.time;
+    }
+
+    public void SetPositionAnimated(Vector3 position, Action<PickableItem> onAnimationEnd)
+    {
+        SetPositionAnimated(position);
+        _onMovingEnd = onAnimationEnd;
     }
 }

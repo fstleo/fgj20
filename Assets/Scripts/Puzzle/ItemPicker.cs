@@ -22,6 +22,10 @@ public class ItemPicker : MonoBehaviour
                 {
                     _pickedItem.OnPicked();
                     _pickedItem.SetPositionAnimated(GetPosOnPickedPlane());
+                    if (_pickedItem.initialPositionState == PickableItem.InitialPositionState.OnInitialPosition)
+                    {
+                        _pickedItem.initialPositionState = PickableItem.InitialPositionState.PickedFromInitialPosition;
+                    }
                 }
             }
         }
@@ -38,11 +42,32 @@ public class ItemPicker : MonoBehaviour
             if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, LayerMask.GetMask("PickableItemGhost")))
             {
                 PickableItemGhost ghost = hit.transform.GetComponent<PickableItemGhost>();
-                _pickedItem.SetPositionAnimated(ghost.transform.position);
+                if (_pickedItem.initialPositionState == PickableItem.InitialPositionState.CanBeReturnedToInitialPosition)
+                {
+                    _pickedItem.SetPositionAnimated(ghost.transform.position,
+                        pickedItem => pickedItem.initialPositionState = PickableItem.InitialPositionState.OnInitialPosition);
+                }
+                else if (_pickedItem.initialPositionState == PickableItem.InitialPositionState.OnInitialPosition)
+                {
+                    _pickedItem.SetPositionAnimated(GetPosOnPickedPlane());
+                    _pickedItem.initialPositionState = PickableItem.InitialPositionState.PickedFromInitialPosition;
+                }
+                else if (_pickedItem.initialPositionState == PickableItem.InitialPositionState.PickedFromInitialPosition)
+                {
+                    _pickedItem.SetPosition(GetPosOnPickedPlane());
+                }
             }
             else
             {
-                _pickedItem.SetPosition(GetPosOnPickedPlane());                
+                if (_pickedItem.initialPositionState == PickableItem.InitialPositionState.PickedFromInitialPosition)
+                {
+                    _pickedItem.SetPositionAnimated(GetPosOnPickedPlane());
+                    _pickedItem.initialPositionState = PickableItem.InitialPositionState.CanBeReturnedToInitialPosition;
+                }
+                else
+                {
+                    _pickedItem.SetPosition(GetPosOnPickedPlane());
+                }
             }
         }
     }
@@ -54,6 +79,7 @@ public class ItemPicker : MonoBehaviour
         {
             return hit.point;
         }
+
         return Vector3.zero;
     }
 }
