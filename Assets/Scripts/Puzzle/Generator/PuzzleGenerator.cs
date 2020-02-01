@@ -16,9 +16,15 @@ public class PuzzleGenerator : MonoBehaviour
     [SerializeField]
     private GameObject _connector;
 
+    [SerializeField]
+    private bool _debugMode;
+
     private void Start()
     {
-        GeneratePuzzle(3, 3, 3);
+        if (_debugMode)
+        {
+            GeneratePuzzle(3, 3, 3);
+        }
     }
 
     public GameObject GeneratePuzzle(int width, int height, int layers)

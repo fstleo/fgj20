@@ -159,6 +159,7 @@ MonoBehaviour:
   _itemDragPlane: {fileID: 5958456243982754690, guid: d696fb2435233ef48868fc7c725c39f0,
     type: 3}
   _connector: {fileID: 0}
+  _debugMode: 1
 --- !u!4 &586476132
 Transform:
   m_ObjectHideFlags: 0
