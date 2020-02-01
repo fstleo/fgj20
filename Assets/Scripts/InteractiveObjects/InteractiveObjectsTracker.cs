@@ -27,7 +27,7 @@ public class InteractiveObjectsTracker : MonoBehaviour
         _annotationLabel.text = "";
         if (_currentInteractive == null)
         {
-            for (int i = 0; i < Physics.RaycastNonAlloc(_transform.position, _transform.forward, _raycastHits); i++)
+            for (int i = 0; i < Physics.RaycastNonAlloc(_transform.position, _transform.forward, _raycastHits, 2); i++)
             {
                 var interactive = _raycastHits[i].transform.GetComponent<IInteractive>();
                 if (interactive != null)

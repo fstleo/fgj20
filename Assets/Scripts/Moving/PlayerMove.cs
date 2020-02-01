@@ -17,9 +17,19 @@ public class PlayerMove : MonoBehaviour
     private void Awake()
     {
         _transform = transform;
-        _charController = GetComponent<CharacterController>();
+        _charController = GetComponent<CharacterController>();       
+    }
+
+    private void OnEnable()
+    {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;        
+    }
+
+    private void OnDisable()
+    {        
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
     
     private void Update()
