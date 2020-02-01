@@ -46,19 +46,34 @@ public class ItemPicker : MonoBehaviour
             if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, LayerMask.GetMask("PickableItemGhost")))
             {
                 PickableItemGhost ghost = hit.transform.GetComponent<PickableItemGhost>();
-                if (_pickedItem.initialPositionState == PickableItem.InitialPositionState.CanBeReturnedToInitialPosition)
+                if (CheckCoveringItems(ghost.GetComponent<PickableItem>()))
                 {
-                    _pickedItem.SetPositionAnimated(ghost.transform.position,
-                        pickedItem => pickedItem.initialPositionState = PickableItem.InitialPositionState.OnInitialPosition);
+                    if (_pickedItem.initialPositionState == PickableItem.InitialPositionState.PickedFromInitialPosition)
+                    {
+                        _pickedItem.SetPositionAnimated(GetPosOnPickedPlane());
+                        _pickedItem.initialPositionState = PickableItem.InitialPositionState.CanBeReturnedToInitialPosition;
+                    }
+                    else
+                    {
+                        _pickedItem.SetPosition(GetPosOnPickedPlane());
+                    }
                 }
-                else if (_pickedItem.initialPositionState == PickableItem.InitialPositionState.OnInitialPosition)
+                else
                 {
-                    _pickedItem.SetPositionAnimated(GetPosOnPickedPlane());
-                    _pickedItem.initialPositionState = PickableItem.InitialPositionState.PickedFromInitialPosition;
-                }
-                else if (_pickedItem.initialPositionState == PickableItem.InitialPositionState.PickedFromInitialPosition)
-                {
-                    _pickedItem.SetPosition(GetPosOnPickedPlane());
+                    if (_pickedItem.initialPositionState == PickableItem.InitialPositionState.CanBeReturnedToInitialPosition)
+                    {
+                        _pickedItem.SetPositionAnimated(ghost.transform.position,
+                            pickedItem => pickedItem.initialPositionState = PickableItem.InitialPositionState.OnInitialPosition);
+                    }
+                    else if (_pickedItem.initialPositionState == PickableItem.InitialPositionState.OnInitialPosition)
+                    {
+                        _pickedItem.SetPositionAnimated(GetPosOnPickedPlane());
+                        _pickedItem.initialPositionState = PickableItem.InitialPositionState.PickedFromInitialPosition;
+                    }
+                    else if (_pickedItem.initialPositionState == PickableItem.InitialPositionState.PickedFromInitialPosition)
+                    {
+                        _pickedItem.SetPosition(GetPosOnPickedPlane());
+                    }
                 }
             }
             else

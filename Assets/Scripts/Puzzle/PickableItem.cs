@@ -67,7 +67,7 @@ public class PickableItem : MonoBehaviour
         if (_ghost == null)
         {
             GameObject ghostGo = Instantiate(gameObject);
-            Destroy(ghostGo.GetComponent<PickableItem>());
+            ghostGo.GetComponent<PickableItem>().enabled = false;
             _ghost = ghostGo.AddComponent<PickableItemGhost>();
             Transform ghostTransform = _ghost.transform;
             ghostTransform.SetParent(transform.parent);
