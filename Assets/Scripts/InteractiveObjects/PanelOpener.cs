@@ -6,11 +6,11 @@ using UnityEngine;
 public class PanelOpener : MonoBehaviour, IInteractive
 {
     public string Annotation => "Open";
-   
-    [SerializeField]
+       
     private Transform _cameraTform;
 
-    [SerializeField] private Vector3 _cameraOffset;
+    [SerializeField]
+    private Vector3 _cameraOffset;
     
     [SerializeField] 
     private float _cameraAnimationTime = 0.5f;
@@ -19,6 +19,7 @@ public class PanelOpener : MonoBehaviour, IInteractive
 
     private void Awake()
     {
+        _cameraTform = Camera.main.transform;
         _animator = GetComponent<Animator>();
     }
     
@@ -30,6 +31,7 @@ public class PanelOpener : MonoBehaviour, IInteractive
 
     public void StopInteraction()
     {
+        _animator.SetBool("Opened", false);
         OnStopInteraction?.Invoke();
     }
 

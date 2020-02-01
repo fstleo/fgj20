@@ -7,15 +7,19 @@ public class PuzzlePlace : MonoBehaviour//, IInteractive
 {
     public event Action OnFix;
     
-//    [SerializeField]
-//    private GameObject _prefab;
+    [SerializeField]
+    private GameObject _puzzlePrefab;
 
     [SerializeField] private GameObject _indicator;
     
     void Awake()
     {
         _indicator.SetActive(false);
-
+        var puzzle = Instantiate(_puzzlePrefab, transform);
+        puzzle.transform.Rotate(-90, 0, 0);
+        puzzle.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
+        puzzle.transform.localPosition += 2f * transform.forward / 3f;
+//        puzzle.GetComponent<PuzzleView>().OnFix += Fix;
     }
 
     public void Break()
@@ -29,23 +33,4 @@ public class PuzzlePlace : MonoBehaviour//, IInteractive
         OnFix?.Invoke();
         GetComponentInChildren<IInteractive>().StopInteraction();        
     }
-
-    private void OnMouseDown()
-    {
-        Fix();
-    }
-
-//    public string Annotation => "Fix";
-//    
-//    public void Interact()
-//    {        
-//        StopInteraction();
-//    }
-//
-//    public void StopInteraction()
-//    {
-//        OnStopInteraction?.Invoke();
-//    }
-//
-//    public event Action OnStopInteraction;
 }
