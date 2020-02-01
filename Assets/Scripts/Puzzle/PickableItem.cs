@@ -44,7 +44,9 @@ public class PickableItem : MonoBehaviour
             GameObject ghostGo = Instantiate(gameObject);
             Destroy(ghostGo.GetComponent<PickableItem>());
             _ghost = ghostGo.AddComponent<PickableItemGhost>();
-            _ghost.transform.SetParent(transform.parent);
+            Transform ghostTransform = _ghost.transform;
+            ghostTransform.SetParent(transform.parent);
+            ghostTransform.localScale = transform.localScale * 0.95f;
             _ghost.GetComponent<Renderer>().material = _ghostMaterial;
             _ghost.gameObject.layer = LayerMask.NameToLayer("PickableItemGhost");
         }
