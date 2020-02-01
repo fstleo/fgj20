@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 public class PuzzleRandomizer : MonoBehaviour
 {
     public event Action OnBreak;
+    public event Action OnPuzzleFix;
     
     [SerializeField] private PuzzlePlace[] _puzzles;
 
@@ -44,6 +45,7 @@ public class PuzzleRandomizer : MonoBehaviour
 
     private void FixPuzzle()
     {
+        OnPuzzleFix?.Invoke();
         _currentPuzzle.OnFix -= FixPuzzle;
         StartNextPuzzle();
     }
