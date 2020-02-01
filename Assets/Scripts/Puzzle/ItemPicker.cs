@@ -14,7 +14,6 @@ public class ItemPicker : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("Mouse down");
             Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, LayerMask.GetMask("PickableItem")))
             {
@@ -22,24 +21,30 @@ public class ItemPicker : MonoBehaviour
                 if (_pickedItem != null)
                 {
                     _pickedItem.OnPicked();
+                    _pickedItem.SetPositionAnimated(GetPosOnPickedPlane());
                 }
             }
         }
 
         if (Input.GetMouseButtonUp(0) && _pickedItem != null)
         {
-            Debug.Log("Mouse up");
             _pickedItem.OnReleased();
             _pickedItem = null;
         }
 
         if (_pickedItem != null && (!Mathf.Approximately(Input.GetAxis("Mouse X"), 0f) || !Mathf.Approximately(Input.GetAxis("Mouse Y"), 0f)))
         {
-            Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, LayerMask.GetMask("PickedItemsDragPlane")))
-            {
-                _pickedItem.transform.position = hit.point;
-            }
+            _pickedItem.SetPosition(GetPosOnPickedPlane());
         }
+    }
+
+    private Vector3 GetPosOnPickedPlane()
+    {
+        Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, LayerMask.GetMask("PickedItemsDragPlane")))
+        {
+            return hit.point;
+        }
+        return Vector3.zero;
     }
 }
