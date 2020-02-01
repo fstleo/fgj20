@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PickableItem : MonoBehaviour
 {
@@ -39,10 +40,17 @@ public class PickableItem : MonoBehaviour
     private Action<PickableItem> _onMovingEnd;
     private PickableItemGhost _ghost;
     private InitialPositionState _initialPositionState;
+    private bool _isPicked;
+    private Vector3 _floatingCenter;
+    private float _floatingStartTime;
+    private float _floatingFrequencyCoeff;
+    private float _floatingMagnitudeCoeff;
 
     private void Awake()
     {
         _initialPositionState = InitialPositionState.OnInitialPosition;
+        _floatingFrequencyCoeff = Random.Range(2f, 8f);
+        _floatingMagnitudeCoeff = Random.Range(0.2f, 1f);
     }
 
     private void Update()
@@ -65,10 +73,16 @@ public class PickableItem : MonoBehaviour
                 transform.position = Vector3.Lerp(transform.position, _moveToPosition.Value, t);
             }
         }
+
+        if (!_isPicked && _initialPositionState == InitialPositionState.CanBeReturnedToInitialPosition)
+        {
+            transform.position = _floatingCenter + _floatingMagnitudeCoeff * Mathf.Sin((Time.time - _floatingStartTime) / _floatingFrequencyCoeff) * Vector3.up;
+        }
     }
 
     public void OnPicked()
     {
+        _isPicked = true;
         if (_ghost == null)
         {
             GameObject ghostGo = Instantiate(gameObject);
@@ -95,7 +109,10 @@ public class PickableItem : MonoBehaviour
 
     public void OnReleased()
     {
+        _isPicked = false;
         _ghost.gameObject.SetActive(false);
+        _floatingCenter = transform.position;
+        _floatingStartTime = Time.time;
     }
 
     public void SetPosition(Vector3 position)
