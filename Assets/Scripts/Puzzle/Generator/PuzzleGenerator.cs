@@ -8,10 +8,14 @@ public class PuzzleGenerator : MonoBehaviour
     [SerializeField]
     private PickableItem[] _itemsPool;
 
+    [SerializeField]
+    private GameObject _itemDragPlane;
+
     private void Start()
     {
         int width = 4;
         int height = 4;
+        float gridStep = 1;
         var puzzleCellDescs = GenerateLayer(width, height);
         GameObject puzzle = new GameObject("Puzzle");
         GameObject layer1 = new GameObject("Layer1");
@@ -20,9 +24,25 @@ public class PuzzleGenerator : MonoBehaviour
         {
             for (int i = 0; i < width; ++i)
             {
-                
+                PuzzleCellDesc desc = puzzleCellDescs[i, j];
+                if (desc.item == null)
+                {
+                    continue;
+                }
+
+                PickableItem item = Instantiate(desc.item);
+                item.transform.parent = layer1.transform;
+                item.transform.position = new Vector3((i - width / 2f) * gridStep, 0f, j * gridStep);
+                if (desc.isVertical)
+                {
+                    item.transform.eulerAngles = new Vector3(0f, -90f, 0f);
+                }
             }
         }
+
+        GameObject dragPlane = Instantiate(_itemDragPlane);
+        dragPlane.transform.parent = puzzle.transform;
+        dragPlane.transform.position = layer1.transform.position + Vector3.up * gridStep;
     }
 
     public PuzzleCellDesc[,] GenerateLayer(int width, int height)

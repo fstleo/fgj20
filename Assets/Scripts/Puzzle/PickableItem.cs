@@ -16,6 +16,9 @@ public class PickableItem : MonoBehaviour
     private Transform[] _sectionPoints;
 
     [SerializeField]
+    private Collider _collider;
+
+    [SerializeField]
     private Renderer[] _renderers;
 
     [SerializeField]
@@ -29,6 +32,7 @@ public class PickableItem : MonoBehaviour
 
     public Transform[] sectionPoints => _sectionPoints;
     public int size => _sectionPoints.Length;
+    public Collider collider => _collider;
 
     private Vector3? _moveToPosition;
     private float _movingStartTime;
@@ -71,7 +75,7 @@ public class PickableItem : MonoBehaviour
             PickableItem ghostPickableItem = ghostGo.GetComponent<PickableItem>();
             ghostPickableItem.enabled = false;
             _ghost = ghostGo.AddComponent<PickableItemGhost>();
-            _ghost.gameObject.layer = LayerMask.NameToLayer("PickableItemGhost");
+            ghostPickableItem._collider.gameObject.layer = LayerMask.NameToLayer("PickableItemGhost");
             
             Transform ghostTransform = _ghost.transform;
             Transform itemTransform = transform;

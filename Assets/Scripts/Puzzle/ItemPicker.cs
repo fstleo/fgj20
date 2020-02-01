@@ -17,14 +17,14 @@ public class ItemPicker : MonoBehaviour
             Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, LayerMask.GetMask("PickableItem")))
             {
-                PickableItem pickedItem = hit.transform.GetComponent<PickableItem>();
+                PickableItem pickedItem = hit.transform.parent.GetComponent<PickableItem>();
                 if (!CheckCoveringItems(pickedItem))
                 {
                     _pickedItem = pickedItem;
                     if (_pickedItem != null)
                     {
                         _pickedItem.OnPicked();
-                        _pickedItem.SetPositionAnimated(GetPosOnPickedPlane());
+                        _pickedItem.SetPositionAnimated(GetPosOnPickedPlane(_pickedItem));
                         if (_pickedItem.initialPositionState == PickableItem.InitialPositionState.OnInitialPosition)
                         {
                             _pickedItem.initialPositionState = PickableItem.InitialPositionState.PickedFromInitialPosition;
@@ -45,17 +45,17 @@ public class ItemPicker : MonoBehaviour
             Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, LayerMask.GetMask("PickableItemGhost")))
             {
-                PickableItemGhost ghost = hit.transform.GetComponent<PickableItemGhost>();
-                if (CheckCoveringItems(ghost.GetComponent<PickableItem>()))
+                PickableItemGhost ghost = hit.transform.parent.GetComponent<PickableItemGhost>();
+                if (CheckCoveringItems(ghost.transform.GetComponent<PickableItem>()))
                 {
                     if (_pickedItem.initialPositionState == PickableItem.InitialPositionState.PickedFromInitialPosition)
                     {
-                        _pickedItem.SetPositionAnimated(GetPosOnPickedPlane());
+                        _pickedItem.SetPositionAnimated(GetPosOnPickedPlane(_pickedItem));
                         _pickedItem.initialPositionState = PickableItem.InitialPositionState.CanBeReturnedToInitialPosition;
                     }
                     else
                     {
-                        _pickedItem.SetPosition(GetPosOnPickedPlane());
+                        _pickedItem.SetPosition(GetPosOnPickedPlane(_pickedItem));
                     }
                 }
                 else
@@ -67,12 +67,12 @@ public class ItemPicker : MonoBehaviour
                     }
                     else if (_pickedItem.initialPositionState == PickableItem.InitialPositionState.OnInitialPosition)
                     {
-                        _pickedItem.SetPositionAnimated(GetPosOnPickedPlane());
+                        _pickedItem.SetPositionAnimated(GetPosOnPickedPlane(_pickedItem));
                         _pickedItem.initialPositionState = PickableItem.InitialPositionState.PickedFromInitialPosition;
                     }
                     else if (_pickedItem.initialPositionState == PickableItem.InitialPositionState.PickedFromInitialPosition)
                     {
-                        _pickedItem.SetPosition(GetPosOnPickedPlane());
+                        _pickedItem.SetPosition(GetPosOnPickedPlane(_pickedItem));
                     }
                 }
             }
@@ -80,23 +80,25 @@ public class ItemPicker : MonoBehaviour
             {
                 if (_pickedItem.initialPositionState == PickableItem.InitialPositionState.PickedFromInitialPosition)
                 {
-                    _pickedItem.SetPositionAnimated(GetPosOnPickedPlane());
+                    _pickedItem.SetPositionAnimated(GetPosOnPickedPlane(_pickedItem));
                     _pickedItem.initialPositionState = PickableItem.InitialPositionState.CanBeReturnedToInitialPosition;
                 }
                 else
                 {
-                    _pickedItem.SetPosition(GetPosOnPickedPlane());
+                    _pickedItem.SetPosition(GetPosOnPickedPlane(_pickedItem));
                 }
             }
         }
     }
 
-    private Vector3 GetPosOnPickedPlane()
+    private Vector3 GetPosOnPickedPlane(PickableItem item)
     {
         Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, LayerMask.GetMask("PickedItemsDragPlane")))
         {
-            return hit.point;
+            float xOffset = item.collider.transform.position.x - item.transform.position.x;
+            float zOffset = item.collider.transform.position.z - item.transform.position.z;
+            return hit.point - Vector3.right * xOffset - Vector3.forward * zOffset;
         }
 
         return Vector3.zero;
@@ -109,7 +111,7 @@ public class ItemPicker : MonoBehaviour
             Ray ray = new Ray(point.position, item.transform.up);
             if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, LayerMask.GetMask("PickableItem")))
             {
-                PickableItem coveringItem = hit.transform.GetComponent<PickableItem>();
+                PickableItem coveringItem = hit.transform.parent.GetComponent<PickableItem>();
                 if (coveringItem.initialPositionState == PickableItem.InitialPositionState.OnInitialPosition)
                 {
                     return true;

@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 7379314742681296895}
   - component: {fileID: 6701897568860304734}
   m_Layer: 0
-  m_Name: PuzzleItem1x1_Plumbus1 1
+  m_Name: PuzzleItem1x1_Plumbus1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,6 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sectionPoints:
   - {fileID: 8412054635474614058}
+  _collider: {fileID: 9189870800542140100}
   _renderers:
   - {fileID: 2367365201990554525}
   - {fileID: 7190608530596469492}

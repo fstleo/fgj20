@@ -122,6 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sectionPoints:
   - {fileID: 4019799298021248135}
+  _collider: {fileID: 4394484073133981033}
   _renderers:
   - {fileID: 9064130983570182056}
   _ghostMaterial: {fileID: 2100000, guid: 4a1e62eec09590047a138df675482d76, type: 2}
