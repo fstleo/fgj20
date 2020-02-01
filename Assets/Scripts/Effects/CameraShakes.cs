@@ -34,6 +34,7 @@ public class CameraShakes : MonoBehaviour
     {
         _shakeAmount = amount;
         _shakeDuration = duration;
+        SoundPlayer.Play("explosion", amount * 4f);
         enabled = true;
     }
     
