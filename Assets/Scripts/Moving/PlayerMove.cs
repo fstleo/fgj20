@@ -41,11 +41,11 @@ public class PlayerMove : MonoBehaviour
         _transform.rotation = Quaternion.Euler(_transform.rotation.eulerAngles.x, _transform.rotation.eulerAngles.y + Input.GetAxis("Mouse X") * _rotatingSpeed, transform.rotation.eulerAngles.z);                
     }
     
-    void LateUpdate()
+    private void LateUpdate()
     {                
         _cameraTform.position = _transform.position + _cameraOffset;
         var rotationY = _cameraTform.rotation.eulerAngles.x - Input.GetAxis("Mouse Y") * _rotatingSpeed;
-//        rotationY = rotationY > 280 || rotationY < 80 ? rotationY : (rotationY > 180 ? 280 : 80);
+        rotationY = rotationY > 280 || rotationY < 80 ? rotationY : (rotationY > 180 ? 280 : 80);
         _cameraTform.rotation = Quaternion.Euler(rotationY, 
             _transform.rotation.eulerAngles.y, _transform.rotation.eulerAngles.z);
     }
