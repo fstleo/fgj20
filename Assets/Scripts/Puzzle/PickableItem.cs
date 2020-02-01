@@ -16,6 +16,9 @@ public class PickableItem : MonoBehaviour
     private Transform[] _sectionPoints;
 
     [SerializeField]
+    private Renderer _renderer;
+
+    [SerializeField]
     private Material _ghostMaterial;
 
     public InitialPositionState initialPositionState
@@ -67,13 +70,14 @@ public class PickableItem : MonoBehaviour
         if (_ghost == null)
         {
             GameObject ghostGo = Instantiate(gameObject);
-            ghostGo.GetComponent<PickableItem>().enabled = false;
+            PickableItem ghostPickableItem = ghostGo.GetComponent<PickableItem>();
+            ghostPickableItem.enabled = false;
             _ghost = ghostGo.AddComponent<PickableItemGhost>();
             Transform ghostTransform = _ghost.transform;
             ghostTransform.SetParent(transform.parent);
             ghostTransform.position = transform.position;
             ghostTransform.localScale = transform.localScale * 0.95f;
-            _ghost.GetComponent<Renderer>().material = _ghostMaterial;
+            ghostPickableItem._renderer.material = _ghostMaterial;
             _ghost.gameObject.layer = LayerMask.NameToLayer("PickableItemGhost");
         }
 

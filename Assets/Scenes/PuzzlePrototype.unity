@@ -308,6 +308,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Puzzle
       objectReference: {fileID: 0}
+    - target: {fileID: 3727592697979805440, guid: 73ec37702e140364b882305188e05a04,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3727592697979805441, guid: 73ec37702e140364b882305188e05a04,
         type: 3}
       propertyPath: m_LocalPosition.x

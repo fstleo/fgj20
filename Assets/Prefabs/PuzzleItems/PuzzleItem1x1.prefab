@@ -109,6 +109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sectionPoints:
   - {fileID: 5970001425079190888}
+  _renderer: {fileID: 4678090586714257650}
   _ghostMaterial: {fileID: 2100000, guid: 4a1e62eec09590047a138df675482d76, type: 2}
 --- !u!1 &5642528197064416267
 GameObject:
