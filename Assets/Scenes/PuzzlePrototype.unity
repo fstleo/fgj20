@@ -155,6 +155,7 @@ MonoBehaviour:
   - {fileID: 6701897568860304734, guid: 146cf2475b0fc7544adacf0f7868cefc, type: 3}
   - {fileID: 1778902222193941609, guid: e73c881f9d9cedc42a966fac6cbaa487, type: 3}
   - {fileID: 4967235224787639255, guid: f60ebc4e15e92154f811165bf30a3f87, type: 3}
+  - {fileID: 1426855428869746448, guid: 3d038816c201db248bf70bf49805dd1a, type: 3}
   _itemDragPlane: {fileID: 5958456243982754690, guid: d696fb2435233ef48868fc7c725c39f0,
     type: 3}
 --- !u!4 &586476132

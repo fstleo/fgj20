@@ -5,6 +5,8 @@ using Random = UnityEngine.Random;
 
 public class PuzzleGenerator : MonoBehaviour
 {
+    private const float GRID_STEP = 1f;
+
     [SerializeField]
     private PickableItem[] _itemsPool;
 
@@ -13,11 +15,11 @@ public class PuzzleGenerator : MonoBehaviour
 
     private void Start()
     {
-        int width = 3;
-        int height = 3;
-        int layers = 3;
-        float gridStep = 1;
+        GeneratePuzzle(3, 3, 3);
+    }
 
+    public GameObject GeneratePuzzle(int width, int height, int layers)
+    {
         GameObject puzzle = new GameObject("Puzzle");
         GameObject topLayer = null;
         for (int layerIndex = 0; layerIndex < layers; ++layerIndex)
@@ -26,7 +28,7 @@ public class PuzzleGenerator : MonoBehaviour
             GameObject layer = new GameObject("Layer" + layerIndex);
             topLayer = layer;
             layer.transform.parent = puzzle.transform;
-            layer.transform.position = layerIndex * gridStep * Vector3.up;
+            layer.transform.position = layerIndex * GRID_STEP * Vector3.up;
             for (int j = 0; j < height; ++j)
             {
                 for (int i = 0; i < width; ++i)
@@ -39,7 +41,7 @@ public class PuzzleGenerator : MonoBehaviour
 
                     PickableItem item = Instantiate(desc.item);
                     item.transform.parent = layer.transform;
-                    item.transform.localPosition = new Vector3((i - width / 2f) * gridStep, 0f, j * gridStep);
+                    item.transform.localPosition = new Vector3((i - width / 2f) * GRID_STEP, 0f, j * GRID_STEP);
                     if (desc.isVertical)
                     {
                         item.transform.eulerAngles = new Vector3(0f, -90f, 0f);
@@ -50,10 +52,11 @@ public class PuzzleGenerator : MonoBehaviour
 
         GameObject dragPlane = Instantiate(_itemDragPlane);
         dragPlane.transform.parent = puzzle.transform;
-        dragPlane.transform.position = topLayer.transform.position + Vector3.up * gridStep;
+        dragPlane.transform.position = topLayer.transform.position + Vector3.up * GRID_STEP;
+        return puzzle;
     }
 
-    public PuzzleCellDesc[,] GenerateLayer(int width, int height)
+    private PuzzleCellDesc[,] GenerateLayer(int width, int height)
     {
         PuzzleCellDesc[,] result = new PuzzleCellDesc[width, height];
         for (int j = 0; j < height; ++j)
