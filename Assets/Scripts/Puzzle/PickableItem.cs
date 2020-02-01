@@ -51,7 +51,7 @@ public class PickableItem : MonoBehaviour
     {
         _initialPositionState = InitialPositionState.OnInitialPosition;
         _floatingFrequencyCoeff = Random.Range(4f, 8f);
-        _floatingMagnitudeCoeff = Random.Range(0.2f, 0.5f);
+        _floatingMagnitudeCoeff = Random.Range(0.2f, 0.5f) * (Random.Range(0, 2) == 0 ? +1f : -1f);
     }
 
     private void Update()
@@ -91,14 +91,14 @@ public class PickableItem : MonoBehaviour
             ghostPickableItem.enabled = false;
             _ghost = ghostGo.AddComponent<PickableItemGhost>();
             ghostPickableItem._collider.gameObject.layer = LayerMask.NameToLayer("PickableItemGhost");
-            
+
             Transform ghostTransform = _ghost.transform;
             Transform itemTransform = transform;
             ghostTransform.SetParent(itemTransform.parent);
             ghostTransform.position = itemTransform.position;
             ghostTransform.rotation = itemTransform.rotation;
             ghostTransform.localScale = itemTransform.localScale * 0.95f;
-            
+
             foreach (Renderer renderer in ghostPickableItem._renderers)
             {
                 renderer.material = _ghostMaterial;

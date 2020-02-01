@@ -151,14 +151,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _itemsPool:
+  - {fileID: 1426855428869746448, guid: 3d038816c201db248bf70bf49805dd1a, type: 3}
   - {fileID: 5590462315681036439, guid: f460cd99b9af5b740aad5d9c0e601d76, type: 3}
+  - {fileID: 7051215024178701027, guid: 2b60c9dc3bab6e34a8aa13b65b7ba2bd, type: 3}
   - {fileID: 6701897568860304734, guid: 146cf2475b0fc7544adacf0f7868cefc, type: 3}
+  - {fileID: 3028609571304284593, guid: 79ef908d40743a74fa543743b0c9cf6d, type: 3}
   - {fileID: 1778902222193941609, guid: e73c881f9d9cedc42a966fac6cbaa487, type: 3}
   - {fileID: 4967235224787639255, guid: f60ebc4e15e92154f811165bf30a3f87, type: 3}
-  - {fileID: 1426855428869746448, guid: 3d038816c201db248bf70bf49805dd1a, type: 3}
   _itemDragPlane: {fileID: 5958456243982754690, guid: d696fb2435233ef48868fc7c725c39f0,
     type: 3}
-  _connector: {fileID: 0}
   _debugMode: 1
 --- !u!4 &586476132
 Transform:

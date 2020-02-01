@@ -14,9 +14,6 @@ public class PuzzleGenerator : MonoBehaviour
     private GameObject _itemDragPlane;
 
     [SerializeField]
-    private GameObject _connector;
-
-    [SerializeField]
     private bool _debugMode;
 
     private void Start()
