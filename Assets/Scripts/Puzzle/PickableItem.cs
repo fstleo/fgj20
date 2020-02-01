@@ -70,15 +70,19 @@ public class PickableItem : MonoBehaviour
             PickableItem ghostPickableItem = ghostGo.GetComponent<PickableItem>();
             ghostPickableItem.enabled = false;
             _ghost = ghostGo.AddComponent<PickableItemGhost>();
+            _ghost.gameObject.layer = LayerMask.NameToLayer("PickableItemGhost");
+            
             Transform ghostTransform = _ghost.transform;
-            ghostTransform.SetParent(transform.parent);
-            ghostTransform.position = transform.position;
-            ghostTransform.localScale = transform.localScale * 0.95f;
+            Transform itemTransform = transform;
+            ghostTransform.SetParent(itemTransform.parent);
+            ghostTransform.position = itemTransform.position;
+            ghostTransform.rotation = itemTransform.rotation;
+            ghostTransform.localScale = itemTransform.localScale * 0.95f;
+            
             foreach (Renderer renderer in ghostPickableItem._renderers)
             {
                 renderer.material = _ghostMaterial;
             }
-            _ghost.gameObject.layer = LayerMask.NameToLayer("PickableItemGhost");
         }
 
         _ghost.gameObject.SetActive(true);
