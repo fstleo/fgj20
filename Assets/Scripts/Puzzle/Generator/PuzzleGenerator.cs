@@ -13,6 +13,14 @@ public class PuzzleGenerator : MonoBehaviour
     [SerializeField]
     private GameObject _itemDragPlane;
 
+    [SerializeField]
+    private GameObject _connector;
+
+    private void Start()
+    {
+        GeneratePuzzle(3, 3, 3);
+    }
+
     public GameObject GeneratePuzzle(int width, int height, int layers)
     {
         GameObject puzzle = new GameObject("Puzzle");
