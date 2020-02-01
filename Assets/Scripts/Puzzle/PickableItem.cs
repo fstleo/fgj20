@@ -29,7 +29,6 @@ public class PickableItem : MonoBehaviour
 
     public Transform[] sectionPoints => _sectionPoints;
 
-    private Color _defaultMaterialColor;
     private Vector3? _moveToPosition;
     private float _movingStartTime;
     private Action<PickableItem> _onMovingEnd;
@@ -38,7 +37,6 @@ public class PickableItem : MonoBehaviour
 
     private void Awake()
     {
-        _defaultMaterialColor = GetComponent<Renderer>().material.color;
         _initialPositionState = InitialPositionState.OnInitialPosition;
     }
 
@@ -66,7 +64,6 @@ public class PickableItem : MonoBehaviour
 
     public void OnPicked()
     {
-        GetComponent<Renderer>().material.color = Color.red;
         if (_ghost == null)
         {
             GameObject ghostGo = Instantiate(gameObject);
@@ -86,7 +83,6 @@ public class PickableItem : MonoBehaviour
 
     public void OnReleased()
     {
-        GetComponent<Renderer>().material.color = _defaultMaterialColor;
         _ghost.gameObject.SetActive(false);
     }
 
