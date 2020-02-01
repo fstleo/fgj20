@@ -24,6 +24,8 @@ public class PickableItem : MonoBehaviour
         set => _initialPositionState = value;
     }
 
+    public Transform[] sectionPoints => _sectionPoints;
+
     private Color _defaultMaterialColor;
     private Vector3? _moveToPosition;
     private float _movingStartTime;

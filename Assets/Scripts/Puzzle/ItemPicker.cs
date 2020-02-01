@@ -89,7 +89,19 @@ public class ItemPicker : MonoBehaviour
 
     private bool CheckCoveringItems(PickableItem item)
     {
-        Ray ray = new Ray(item.transform.position, Vector3.up);
-        return Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, LayerMask.GetMask("PickableItem"));
+        foreach (Transform point in item.sectionPoints)
+        {
+            Ray ray = new Ray(point.position, Vector3.up);
+            if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, LayerMask.GetMask("PickableItem")))
+            {
+                PickableItem coveringItem = hit.transform.GetComponent<PickableItem>();
+                if (coveringItem.initialPositionState == PickableItem.InitialPositionState.OnInitialPosition)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 }
