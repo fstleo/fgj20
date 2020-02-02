@@ -8,7 +8,7 @@ public class Fadein : MonoBehaviour
 
     private void Start()
     {        
-        _image.CrossFadeAlpha(0,3f, true);
+        _image.CrossFadeAlpha(0, 10f, true);
     }
 
 }

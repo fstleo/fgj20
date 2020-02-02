@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameTimer : MonoBehaviour
 {
-    private float _timer = 60f;
+    private float _timer = 30f;
     
     private float _winTimer = 180f;
 
