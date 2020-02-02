@@ -124,8 +124,6 @@ MonoBehaviour:
   _sectionPoints:
   - {fileID: 4019799298021248135}
   _collider: {fileID: 4394484073133981033}
-  _renderers:
-  - {fileID: 9064130983570182056}
   _ghostMaterial: {fileID: 2100000, guid: 4a1e62eec09590047a138df675482d76, type: 2}
 --- !u!1 &7910268832744641119
 GameObject:
@@ -310,6 +308,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 41
       objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: f35810c98f98f8c49aa2fcaf62ce6977,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d5c3cf87ed6f23a43bac8346755b22ed, type: 2}
     - target: {fileID: -927199367670048503, guid: f35810c98f98f8c49aa2fcaf62ce6977,
         type: 3}
       propertyPath: m_Name
@@ -320,12 +323,6 @@ PrefabInstance:
 --- !u!4 &6029700666813106535 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: f35810c98f98f8c49aa2fcaf62ce6977,
-    type: 3}
-  m_PrefabInstance: {fileID: 1645916137919963773}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &9064130983570182056 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -1504981713932161579, guid: f35810c98f98f8c49aa2fcaf62ce6977,
     type: 3}
   m_PrefabInstance: {fileID: 1645916137919963773}
   m_PrefabAsset: {fileID: 0}

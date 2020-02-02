@@ -103,7 +103,7 @@ public class PickableItem : MonoBehaviour
             ghostTransform.SetParent(itemTransform.parent);
             ghostTransform.position = itemTransform.position;
             ghostTransform.rotation = itemTransform.rotation;
-            ghostTransform.localScale = itemTransform.localScale * 0.9f;
+            ghostTransform.localScale = itemTransform.localScale * 0.98f;
 
             foreach (Renderer renderer in ghostPickableItem._renderers)
             {
