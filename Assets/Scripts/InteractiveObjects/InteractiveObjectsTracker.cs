@@ -13,6 +13,9 @@ public class InteractiveObjectsTracker : MonoBehaviour
     private PlayerMove _playerMover;
 
     [SerializeField]
+    private StationaryCameraMover _puzzleCameraMover;
+    
+    [SerializeField]
     private TextMeshProUGUI _annotationLabel;
 
     private IInteractive _currentInteractive = null;
@@ -38,6 +41,8 @@ public class InteractiveObjectsTracker : MonoBehaviour
                         _currentInteractive = interactive;
                         _currentInteractive.OnStopInteraction += StopInteraction;
                         _playerMover.enabled = false;
+                        _puzzleCameraMover.enabled = true;
+                        _puzzleCameraMover.SetTarget(_currentInteractive.CameraPosition);
                         _currentInteractive.Interact();                        
                     }
                 }
@@ -56,6 +61,7 @@ public class InteractiveObjectsTracker : MonoBehaviour
     {
         _currentInteractive.OnStopInteraction -= StopInteraction;
         _playerMover.enabled = true;
+        _puzzleCameraMover.enabled = false;
         _currentInteractive = null;
     }
 }

@@ -35,8 +35,7 @@ public class PlayerMove : MonoBehaviour
     private void Update()
     {
         _charController.Move(_speed * _transform.forward * Input.GetAxis("Vertical") * Time.deltaTime);
-        _charController.Move(_speed * _transform.right * Input.GetAxis("Horizontal") * Time.deltaTime);
-              
+        _charController.Move(_speed * _transform.right * Input.GetAxis("Horizontal") * Time.deltaTime);              
 
         _transform.rotation = Quaternion.Euler(_transform.rotation.eulerAngles.x, _transform.rotation.eulerAngles.y + Input.GetAxis("Mouse X") * _rotatingSpeed, transform.rotation.eulerAngles.z);                
     }
