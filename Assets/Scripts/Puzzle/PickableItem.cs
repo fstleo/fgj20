@@ -103,19 +103,16 @@ public class PickableItem : MonoBehaviour
             ghostTransform.SetParent(itemTransform.parent);
             ghostTransform.position = itemTransform.position;
             ghostTransform.rotation = itemTransform.rotation;
-            ghostTransform.localScale = itemTransform.localScale * 0.95f;
+            ghostTransform.localScale = itemTransform.localScale * 0.9f;
 
             foreach (Renderer renderer in ghostPickableItem._renderers)
             {
                 renderer.material = _ghostMaterial;
+                renderer.material.color = new Color(1f, 0f, 0f, 0.5f);
             }
         }
 
         _ghost.gameObject.SetActive(true);
-        foreach (Renderer renderer in _ghost.GetComponent<PickableItem>()._renderers)
-        {
-            renderer.material.color = _isBroken ? new Color(1f, 0f, 0f, 0.5f) : new Color(0f, 1f, 0f, 0.5f);
-        }
     }
 
     public void OnReleased()
