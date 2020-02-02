@@ -16,8 +16,6 @@ public class PanelOpener : MonoBehaviour, IInteractive
 
     private ItemPicker _itemPicker;
 
-    [SerializeField] private GameObject _effect;
-
     private void Awake()
     {        
         _animator = GetComponent<Animator>();
@@ -26,8 +24,7 @@ public class PanelOpener : MonoBehaviour, IInteractive
     public void Interact()
     {
         _animator.SetBool("Opened", true);
-        _itemPicker = gameObject.AddComponent<ItemPicker>();      
-        _effect.SetActive(false);
+        _itemPicker = gameObject.AddComponent<ItemPicker>();              
     }
 
     public void StopInteraction()
