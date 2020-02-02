@@ -24,11 +24,13 @@ public class PanelOpener : MonoBehaviour, IInteractive
     public void Interact()
     {
         _animator.SetBool("Opened", true);
-        _itemPicker = gameObject.AddComponent<ItemPicker>();              
+        _itemPicker = gameObject.AddComponent<ItemPicker>();             
+        SoundPlayer.Play("door_open");
     }
 
     public void StopInteraction()
     {
+        SoundPlayer.Play("door_open");
         _animator.SetBool("Opened", false);
         OnStopInteraction?.Invoke();        
         Destroy(_itemPicker);
