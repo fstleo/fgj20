@@ -84,6 +84,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3033130196636252816}
   - component: {fileID: 1778902222193941609}
+  - component: {fileID: 3674565469201408067}
   m_Layer: 0
   m_Name: PuzzleItem2x1_Granicapa
   m_TagString: Untagged
@@ -126,6 +127,22 @@ MonoBehaviour:
   - {fileID: 5094089068062614523}
   _collider: {fileID: 3626174339720123485}
   _ghostMaterial: {fileID: 2100000, guid: 4a1e62eec09590047a138df675482d76, type: 2}
+--- !u!114 &3674565469201408067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5221104848743630638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edaac0750ce24434bbc51dbe176b9d7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objects:
+  - {fileID: 2676391437858028581}
+  _timeStepMs: 50
+  _probability: 0.2
 --- !u!1 &7320743247799800320
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,12 +376,18 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: d5c3cf87ed6f23a43bac8346755b22ed, type: 2}
+      objectReference: {fileID: 2100000, guid: 3aaa48c3f4fe50549915d4606ffead64, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 274b3d82bfee2ab48a0ce68aa24a0785, type: 3}
 --- !u!4 &1466619029486325386 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 274b3d82bfee2ab48a0ce68aa24a0785,
+    type: 3}
+  m_PrefabInstance: {fileID: 5845899855654151568}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2676391437858028581 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8360014783602842037, guid: 274b3d82bfee2ab48a0ce68aa24a0785,
     type: 3}
   m_PrefabInstance: {fileID: 5845899855654151568}
   m_PrefabAsset: {fileID: 0}
