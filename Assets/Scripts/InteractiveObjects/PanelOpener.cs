@@ -9,19 +9,14 @@ public class PanelOpener : MonoBehaviour, IInteractive
     public Transform CameraPosition => _cameraPlace;
     public string Annotation => "Open";
        
-    
-    [SerializeField]
-    private Transform _cameraTform;
-
     [SerializeField]
     private Transform _cameraPlace;
-    
-    [SerializeField] 
-    private float _cameraAnimationTime = 0.5f;
     
     private Animator _animator;
 
     private ItemPicker _itemPicker;
+
+    [SerializeField] private GameObject _effect;
 
     private void Awake()
     {        
@@ -31,7 +26,8 @@ public class PanelOpener : MonoBehaviour, IInteractive
     public void Interact()
     {
         _animator.SetBool("Opened", true);
-        _itemPicker = gameObject.AddComponent<ItemPicker>();        
+        _itemPicker = gameObject.AddComponent<ItemPicker>();      
+        _effect.SetActive(false);
     }
 
     public void StopInteraction()

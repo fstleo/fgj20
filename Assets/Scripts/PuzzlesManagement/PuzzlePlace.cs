@@ -7,14 +7,16 @@ public class PuzzlePlace : MonoBehaviour
 {
     public event Action OnFix;
 
-    [SerializeField] private Transform _puzzlePoint;
+    [SerializeField] 
+    private Transform _puzzlePoint;
 
-    [SerializeField] private GameObject _indicator;
+    [SerializeField] 
+    private GameObject _indicator;
 
     [SerializeField]
     private PanelOpener _interactive;
     
-    void Awake()
+    private void Awake()
     {        
         _indicator.SetActive(false);      
     }
@@ -35,7 +37,7 @@ public class PuzzlePlace : MonoBehaviour
     {
         _puzzlePoint.GetComponentInChildren<Puzzle>().StartPuzzle(Fix);
         _indicator.SetActive(true);
-        _puzzlePoint.gameObject.SetActive(true);
+        _puzzlePoint.gameObject.SetActive(true);        
         _interactive.CanInteract = true;
     }
 
