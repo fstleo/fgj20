@@ -7,9 +7,14 @@ using UnityEngine.SceneManagement;
 public class GameTimer : MonoBehaviour
 {
     private float _timer = 60f;
+    
+    private float _winTimer = 180f;
 
     [SerializeField]
     private TextMeshProUGUI [] _timerLabels;
+    
+    [SerializeField]
+    private TextMeshProUGUI _winTimerLabel;
     
     private void Awake()
     {
@@ -24,6 +29,8 @@ public class GameTimer : MonoBehaviour
         {
             timerLabel.text = _timer.ToString("F0");
         }
+
+        _winTimerLabel.text = _winTimer.ToString("F0");
     }
 
     private void IncreaseTimer()
@@ -34,10 +41,17 @@ public class GameTimer : MonoBehaviour
     private void Update()
     {
         _timer -= Time.deltaTime;
+        _winTimer -= Time.deltaTime;
         ShowTime();
         if (_timer < 0)
         {
             SceneManager.LoadScene("LoseScene");
+            //gameover
+        }
+        
+        if (_winTimer < 0)
+        {
+            SceneManager.LoadScene("WinScene");
             //gameover
         }
     }
