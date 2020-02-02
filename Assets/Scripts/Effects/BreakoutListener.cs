@@ -11,7 +11,7 @@ public class BreakoutListener : MonoBehaviour
 
     private void ShowEffects()
     {
-        _shaker.Shake(0.8f, 0.3f);
+        _shaker.Shake(0.8f, 0.1f);
     }
 
     private void Update()
@@ -24,7 +24,7 @@ public class BreakoutListener : MonoBehaviour
 
     private void RandomEffect()
     {
-        _shaker.Shake(0.2f, 0.05f);
+        _shaker.Shake(0.2f, 0.01f);
     }
     
 }
