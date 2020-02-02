@@ -28,7 +28,7 @@ public class PuzzlePlace : MonoBehaviour
         puzzleObject.transform.localPosition = Vector3.zero;        
         puzzleObject.transform.localRotation = Quaternion.identity;        
         puzzleObject.transform.Rotate(90, 0, 0);
-        puzzleObject.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+        puzzleObject.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
 
         _puzzlePoint.gameObject.SetActive(false);
     }
