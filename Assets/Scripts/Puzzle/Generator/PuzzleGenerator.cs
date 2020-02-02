@@ -20,7 +20,7 @@ public class PuzzleGenerator : MonoBehaviour
     {
         if (_debugMode)
         {
-            Puzzle puzzle = GeneratePuzzle(4, 4, 4);
+            Puzzle puzzle = GeneratePuzzle(3, 3, 3);
             puzzle.StartPuzzle(() => Debug.Log("Win!!!"));
         }
     }

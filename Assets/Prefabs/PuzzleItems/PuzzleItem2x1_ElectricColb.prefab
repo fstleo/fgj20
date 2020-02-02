@@ -182,6 +182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 358707123979957261}
   - component: {fileID: 3909788341385319156}
+  - component: {fileID: 1802849600}
   m_Layer: 0
   m_Name: PuzzleItem2x1_ElectricColb
   m_TagString: Untagged
@@ -231,6 +232,24 @@ MonoBehaviour:
   - {fileID: 6902274876788818852}
   - {fileID: 2568434225244586257}
   _ghostMaterial: {fileID: 2100000, guid: 4a1e62eec09590047a138df675482d76, type: 2}
+--- !u!114 &1802849600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7392837871072610739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edaac0750ce24434bbc51dbe176b9d7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objects:
+  - {fileID: 6584106696492492228}
+  - {fileID: 7311970525131895627}
+  - {fileID: 3803607232670883175}
+  _timeStepMs: 50
+  _probability: 0.2
 --- !u!1001 &1349665143959103527
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -628,6 +647,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: ElectricColb
       objectReference: {fileID: 0}
+    - target: {fileID: 1076732619025361252, guid: 01cfbfa2aaf291445b069bce06d874c3,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3aaa48c3f4fe50549915d4606ffead64, type: 2}
+    - target: {fileID: 1146190611439798640, guid: 01cfbfa2aaf291445b069bce06d874c3,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3aaa48c3f4fe50549915d4606ffead64, type: 2}
     - target: {fileID: 2484273437412825852, guid: 01cfbfa2aaf291445b069bce06d874c3,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -643,6 +672,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 7e67cd56a47476d41977569f65da2a97, type: 2}
+    - target: {fileID: 8258605161218583505, guid: 01cfbfa2aaf291445b069bce06d874c3,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3aaa48c3f4fe50549915d4606ffead64, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01cfbfa2aaf291445b069bce06d874c3, type: 3}
 --- !u!4 &7507235613203252079 stripped
@@ -669,15 +703,33 @@ MeshRenderer:
     type: 3}
   m_PrefabInstance: {fileID: 3266723595543242869}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6584106696492492228 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8505832833305628081, guid: 01cfbfa2aaf291445b069bce06d874c3,
+    type: 3}
+  m_PrefabInstance: {fileID: 3266723595543242869}
+  m_PrefabAsset: {fileID: 0}
 --- !u!23 &2568434225244586257 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 1076732619025361252, guid: 01cfbfa2aaf291445b069bce06d874c3,
     type: 3}
   m_PrefabInstance: {fileID: 3266723595543242869}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3803607232670883175 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1845520841174529298, guid: 01cfbfa2aaf291445b069bce06d874c3,
+    type: 3}
+  m_PrefabInstance: {fileID: 3266723595543242869}
+  m_PrefabAsset: {fileID: 0}
 --- !u!23 &6902274876788818852 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 8258605161218583505, guid: 01cfbfa2aaf291445b069bce06d874c3,
+    type: 3}
+  m_PrefabInstance: {fileID: 3266723595543242869}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7311970525131895627 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -4022578963139192002, guid: 01cfbfa2aaf291445b069bce06d874c3,
     type: 3}
   m_PrefabInstance: {fileID: 3266723595543242869}
   m_PrefabAsset: {fileID: 0}
