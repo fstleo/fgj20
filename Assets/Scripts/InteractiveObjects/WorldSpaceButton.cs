@@ -10,6 +10,7 @@ public class WorldSpaceButton : MonoBehaviour, IInteractive
     private string _annotation;
 
     public bool CanInteract { get; set; }
+    public Transform CameraPosition => null;
     public string Annotation => _annotation;
 
     private Animator _animator;

@@ -6,8 +6,11 @@ using UnityEngine;
 public class PanelOpener : MonoBehaviour, IInteractive
 {
     public bool CanInteract { get; set; }
+    public Transform CameraPosition => _cameraPlace;
     public string Annotation => "Open";
        
+    
+    [SerializeField]
     private Transform _cameraTform;
 
     [SerializeField]
@@ -21,40 +24,23 @@ public class PanelOpener : MonoBehaviour, IInteractive
     private ItemPicker _itemPicker;
 
     private void Awake()
-    {
-        _cameraTform = Camera.main.transform;
+    {        
         _animator = GetComponent<Animator>();
     }
     
     public void Interact()
     {
         _animator.SetBool("Opened", true);
-        StartCoroutine(PutCameraBefore());
-        _itemPicker = gameObject.AddComponent<ItemPicker>();
-        _cameraTform.GetComponent<CameraShakes>().Fixed = true;
+        _itemPicker = gameObject.AddComponent<ItemPicker>();        
     }
 
     public void StopInteraction()
     {
         _animator.SetBool("Opened", false);
-        OnStopInteraction?.Invoke();
-        _cameraTform.GetComponent<CameraShakes>().Fixed = false;
+        OnStopInteraction?.Invoke();        
         Destroy(_itemPicker);
     }
 
     public event Action OnStopInteraction;
 
-    private IEnumerator PutCameraBefore()
-    {
-        Vector3 cameraStartPos = _cameraTform.position;
-        float timer = _cameraAnimationTime;
-        while (timer > 0)
-        {
-            _cameraTform.position = Vector3.Lerp(cameraStartPos, _cameraPlace.position,
-                1 - timer / _cameraAnimationTime);
-            _cameraTform.LookAt(transform);
-            timer -= Time.deltaTime;
-            yield return null;
-        }
-    }
 }

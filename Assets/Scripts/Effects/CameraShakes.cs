@@ -14,23 +14,14 @@ public class CameraShakes : MonoBehaviour
     private float _shakeAmount = 0.7f;
     
     [SerializeField]
-    private float _decreaseFactor = 1.0f;
-    
-    public bool Fixed { get; set; }
+    private float _decreaseFactor = 1.0f;       
         	
-    private Vector3 _originalPos;
-    
     private void Awake()
     {
         _transform = transform;
     }
     
-    private void OnEnable()
-    {
-        _originalPos = _transform.localPosition;
-    }
-
-    public void Shake(float duration, float amount)
+      public void Shake(float duration, float amount)
     {
         _shakeAmount = amount;
         _shakeDuration = duration;
@@ -40,14 +31,10 @@ public class CameraShakes : MonoBehaviour
     
     private void LateUpdate()
     {
-        if (!Fixed)
-        {
-            _originalPos = _transform.localPosition;
-        }
 
         if (_shakeDuration > 0)
         {
-            _transform.localPosition = _originalPos + Random.insideUnitSphere * _shakeAmount;
+            _transform.localPosition = Random.insideUnitSphere * _shakeAmount;
 			
             _shakeDuration -= Time.deltaTime * _decreaseFactor;
         }
@@ -55,7 +42,7 @@ public class CameraShakes : MonoBehaviour
         {
             _shakeDuration = 0f;
             enabled = false;
-            _transform.localPosition = _originalPos;
+            _transform.localPosition = Vector3.zero;
         }
     }
 }
