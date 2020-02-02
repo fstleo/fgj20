@@ -21,9 +21,6 @@ public class PickableItem : MonoBehaviour
     private Collider _collider;
 
     [SerializeField]
-    private Renderer[] _renderers;
-
-    [SerializeField]
     private Material _ghostMaterial;
 
     public InitialPositionState initialPositionState
@@ -42,6 +39,7 @@ public class PickableItem : MonoBehaviour
     public int size => _sectionPoints.Length;
     public Collider collider => _collider;
 
+    private Renderer[] _renderers;
     private Vector3? _moveToPosition;
     private float _movingStartTime;
     private Action<PickableItem> _onMovingEnd;
@@ -56,6 +54,7 @@ public class PickableItem : MonoBehaviour
 
     private void Awake()
     {
+        _renderers = GetComponentsInChildren<Renderer>();
         _initialPositionState = InitialPositionState.OnInitialPosition;
         _floatingFrequencyCoeff = Random.Range(4f, 8f);
         _floatingMagnitudeCoeff = Random.Range(0.2f, 0.5f) * (Random.Range(0, 2) == 0 ? +1f : -1f);
@@ -115,7 +114,7 @@ public class PickableItem : MonoBehaviour
         _ghost.gameObject.SetActive(true);
         foreach (Renderer renderer in _ghost.GetComponent<PickableItem>()._renderers)
         {
-            renderer.material.color = _isBroken ? new Color(1f, 0f, 0f, 0.5f) : new Color(1f, 1f, 1f, 0.5f);
+            renderer.material.color = _isBroken ? new Color(1f, 0f, 0f, 0.5f) : new Color(0f, 1f, 0f, 0.5f);
         }
     }
 
