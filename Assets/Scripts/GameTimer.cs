@@ -37,7 +37,7 @@ public class GameTimer : MonoBehaviour
         ShowTime();
         if (_timer < 0)
         {
-            SceneManager.LoadScene("FPSTest");
+            SceneManager.LoadScene("LoseScene");
             //gameover
         }
     }
