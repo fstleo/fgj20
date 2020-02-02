@@ -4051,6 +4051,18 @@ MonoBehaviour:
   _newMaterial: {fileID: 2100000, guid: 3aaa48c3f4fe50549915d4606ffead64, type: 2}
   _timeStepMs: 50
   _probability: 0.01
+--- !u!114 &1386735224 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4736989025361721536, guid: d2f3c5da1d6c79640bcaf7f3e3f3c6a1,
+    type: 3}
+  m_PrefabInstance: {fileID: 194058721}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1388449241
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5342,6 +5354,11 @@ PrefabInstance:
       propertyPath: _timerLabels.Array.data[3]
       value: 
       objectReference: {fileID: 140464817}
+    - target: {fileID: 4514470933290459806, guid: da235176c1f76bb4d9e43558256dea53,
+        type: 3}
+      propertyPath: _winTimerLabel
+      value: 
+      objectReference: {fileID: 1386735224}
     - target: {fileID: 4514470933290459807, guid: da235176c1f76bb4d9e43558256dea53,
         type: 3}
       propertyPath: m_LocalPosition.x

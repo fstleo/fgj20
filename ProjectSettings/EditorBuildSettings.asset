@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FPSTest.unity
     guid: 8a274f49cc117ad42aeff31726248130
+  - enabled: 1
+    path: Assets/Scenes/WinScene.unity
+    guid: ffdcdde68bf510940bec5a20b9ca0ccf
+  - enabled: 1
+    path: Assets/Scenes/LoseScene.unity
+    guid: 33b038d2543586d4584e4671b9136af0
   m_configObjects: {}
