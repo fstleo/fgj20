@@ -18,7 +18,9 @@ public class WinEffectEgg : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Random.Range(0, 1f) > 0.999f)
+        if (Time.time < 30f)
+            return;
+        if (Random.Range(0, 1f) > 0.9999f)
         {
             _enabled = true;
             _egg.SetActive(true);
