@@ -28,7 +28,7 @@ public class PuzzleRandomizer : MonoBehaviour
         _solvedPuzzles.AddRange(_puzzles);
         foreach (var puzzle in _solvedPuzzles)
         {
-            puzzle.InitWithPuzzle(puzzleGen.GeneratePuzzle(3, 3, 3));
+            puzzle.InitWithPuzzle(puzzleGen.GeneratePuzzle(2, 2, 2));
         }
         StartNextPuzzle();
     }
